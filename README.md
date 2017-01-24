@@ -3,6 +3,7 @@
 ## Installation
 
 ```sh
+$ brew install opencv3 --with-python
 $ brew install boost --with-python
 $ brew install boost-python
 $ mkdir -p native/build && cd native/build
