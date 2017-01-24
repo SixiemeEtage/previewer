@@ -1,5 +1,8 @@
 # previewer
 
+> Imagination is everything. It is the preview of life's coming attractions.  
+> *Albert Einstein*
+
 ## Installation
 
 ```sh
@@ -22,6 +25,30 @@ $ make install
 $ pip install .
 ```
 
+## Usage
+
+```sh
+$ previewer --preview-height=750 --preview-width=1000 ~/equirectangular.jpg
+```
+
 ## Credits
 
-This package was created with [Cookiecutter](https://github.com/audreyr/cookiecutter) and the [audreyr/cookiecutter-pypackage](https://github.com/audreyr/cookiecutter-pypackage) project template.
+Tools used in rendering this package:
+
+*  [`Cookiecutter`][Cookiecutter]
+*  [`cookiecutter-pypackage`][cookiecutter-pypackage]
+
+## Contact
+
+[Pierre Dulac][github-dulaccc]  
+[@dulaccc][twitter-dulaccc]
+
+## License
+
+`previewer` is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
+
+
+[Cookiecutter]: https://github.com/audreyr/cookiecutter
+[cookiecutter-pypackage]: https://github.com/audreyr/cookiecutter-pypackage
+[github-dulaccc]: https://github.com/dulaccc
+[twitter-dulaccc]: https://twitter.com/dulaccc
