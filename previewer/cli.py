@@ -12,8 +12,9 @@ from .previewer import PreviewGeneratorNative, PreviewGeneratorOpenCV
 @click.option('--output', type=click.Path(), default='output.jpg')
 @click.option('--preview-height', type=int, default=750)
 @click.option('--preview-width', type=int, default=1000)
+@click.option('--fov', type=float, default=55.0)
 @click.option('--no-opencv', type=bool, default=False)
-def main(file_path, output, preview_height, preview_width, no_opencv):
+def main(file_path, output, preview_height, preview_width, fov, no_opencv):
     click.echo(click.style("Image will be loaded from path '{}'".format(file_path), fg='blue'))
 
     preview_size = (preview_width, preview_height)
@@ -22,7 +23,7 @@ def main(file_path, output, preview_height, preview_width, no_opencv):
     click.echo("Loading image...", nl=False)
     t0 = time.time()
     if not no_opencv:
-        p = PreviewGeneratorOpenCV(file_path, preview_size=preview_size)
+        p = PreviewGeneratorOpenCV(file_path, preview_size=preview_size, fov=fov)
     else:
         click.echo(click.style("Warning: very unefficient implementation, it might take more than a minute", fg='orange'))
         p = PreviewGeneratorNative(file_path, preview_size=preview_size)

@@ -27,7 +27,8 @@ class GeneratorMixin:
 
         # intrinsic matrix for the projection
         dmax = max(*self.preview_size)
-        fx = fy = 0.20 * dmax  # TODO use fov instead
+        fov_rad = float(fov) / 180 * np.pi
+        fx = fy = (dmax / 2) / np.math.tan(fov_rad / 2)
         ppx = preview_size[0] / 2
         ppy = preview_size[1] / 2
         K = np.array((fx, 0, ppx, 0, fy, ppy, 0, 0, 1)).reshape((3,3))
