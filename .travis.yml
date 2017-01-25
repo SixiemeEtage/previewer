@@ -41,7 +41,6 @@ matrix:
 
 install:
   - brew update
-  - brew upgrade
   - brew install cmake
   - brew tap homebrew/science
   - brew install opencv3 --with-python
