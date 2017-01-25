@@ -17,6 +17,7 @@ class GeneratorMixin:
         self.image_h2 = image_size[1] / 2
 
         self._scale = self.image_w2 / np.math.pi
+        self._fov = fov
 
         self.preview_size = preview_size
         self.preview_w2 = preview_size[0] / 2
@@ -26,9 +27,10 @@ class GeneratorMixin:
         R = np.eye(3)
 
         # intrinsic matrix for the projection
-        dmax = max(*self.preview_size)
+        # fov_dimension = max(*self.preview_size)
+        fov_dimension = self.preview_size[1]
         fov_rad = float(fov) / 180 * np.pi
-        fx = fy = (dmax / 2) / np.math.tan(fov_rad / 2)
+        fx = fy = (fov_dimension / 2) / np.math.tan(fov_rad / 2)
         ppx = preview_size[0] / 2
         ppy = preview_size[1] / 2
         K = np.array((fx, 0, ppx, 0, fy, ppy, 0, 0, 1)).reshape((3,3))
@@ -56,9 +58,9 @@ class GeneratorMixin:
 
 class PreviewGeneratorNative(object, GeneratorMixin):
 
-    def __init__(self, image_path, fov=50, preview_size=(1000,750)):
+    def __init__(self, image_path, **kwargs):
         self.image = Image.open(image_path)
-        self._setup(self.image.size, fov=fov, preview_size=preview_size)
+        self._setup(self.image.size, **kwargs)
 
     def _bilinear_interpolation(self, xy):
         """Bilinear implementation"""
