@@ -16,25 +16,7 @@ matrix:
       env: TOXENV=py27
     - language: generic
       os: osx
-      env: TOXENV=py33
-    - language: generic
-      os: osx
-      env: TOXENV=py34
-    - language: generic
-      os: osx
-      env: TOXENV=py35
-    - language: generic
-      os: osx
-      env: TOXENV=py27
-    - language: generic
-      os: osx
-      env: TOXENV=py33
-    - language: generic
-      os: osx
-      env: TOXENV=py34
-    - language: generic
-      os: osx
-      env: TOXENV=py35
+      env: TOXENV=py36
     - language: generic
       os: osx
       env: TOXENV=docs
@@ -44,8 +26,8 @@ install:
   - brew tap homebrew/science
   - brew install opencv3 --with-python --with-python3
   - brew link --force opencv3
-  # - echo /usr/local/opt/opencv3/lib/python2.7/site-packages >> /usr/local/lib/python2.7/site-packages/opencv3.pth
-  # - echo /usr/local/opt/opencv3/lib/python3.6/site-packages >> /usr/local/lib/python3.6/site-packages/opencv3.pth
+  - echo /usr/local/opt/opencv3/lib/python2.7/site-packages >> /usr/local/lib/python2.7/site-packages/opencv3.pth
+  - echo /usr/local/opt/opencv3/lib/python3.6/site-packages >> /usr/local/lib/python3.6/site-packages/opencv3.pth
   - brew install boost-python
   - mkdir -p native/build && cd native/build
   - cmake ..
