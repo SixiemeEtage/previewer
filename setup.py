@@ -3,11 +3,6 @@
 
 from setuptools import setup
 
-with open('README.rst') as readme_file:
-    readme = readme_file.read()
-
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
 
 requirements = [
     'click==6.7',
@@ -22,16 +17,15 @@ test_requirements = [
 setup(
     name='previewer',
     version='0.1.0',
-    description="Generate a preview of the 3660 image.",
-    long_description=readme + '\n\n' + history,
+    description="Generate a preview of the 360 image.",
     author="Pierre Dulac",
     author_email='pierre@dulaccc.me',
-    url='https://github.com/dulaccc/previewer',
+    url='https://github.com/Photonomie/previewer',
     packages=[
         'previewer',
     ],
     package_dir={
-        '': '${CMAKE_CURRENT_SOURCE_DIR}',
+        # '': '${CMAKE_CURRENT_SOURCE_DIR}',
         'previewer': 'previewer'
     },
     entry_points={
