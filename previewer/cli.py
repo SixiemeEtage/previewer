@@ -20,7 +20,9 @@ def main(file_path, output, preview_height, preview_width, fov, latitude, longit
     click.echo(click.style("Image will be loaded from path '{}'".format(file_path), fg='blue'))
 
     preview_size = (preview_width, preview_height)
-    click.echo(click.style("Preview will be generated at size '{}'".format(preview_size), fg='blue'))
+    click.echo(click.style("Preview will be generated at size '{}x{}'".format(preview_size[0], preview_size[1]), fg='blue'))
+    click.echo(click.style(" with fov = {} degrees".format(fov), fg='blue'))
+    click.echo(click.style(" at (latitude, longitude) = ({}, {})".format(latitude, longitude), fg='blue'))
 
     click.echo("Loading image...", nl=False)
     t0 = time.time()
