@@ -11,7 +11,7 @@ def clip(v, minv, maxv):
 
 class GeneratorMixin:
 
-    def _setup(self, image_size, fov=50, preview_size=(1000,750)):
+    def _setup(self, image_size, fov=50.0, latitude=0.0, longitude=0.0, preview_size=(1000,750)):
         self.image_size = image_size
         self.image_w2 = image_size[0] / 2
         self.image_h2 = image_size[1] / 2
@@ -24,7 +24,20 @@ class GeneratorMixin:
         self.preview_h2 = preview_size[1] / 2
 
         # rotation corresponding to the preview being generated
-        R = np.eye(3)
+        # R = np.eye(3)
+        lat_rad = -1.0 * latitude / 180.0 * np.pi
+        lng_rad = -1.0 * longitude / 180.0 * np.pi
+        Rx = np.array([
+            [1,0,0],
+            [0, np.math.cos(lat_rad), -np.math.sin(lat_rad)],
+            [0, np.math.sin(lat_rad), np.math.cos(lat_rad)]
+        ])
+        Ry = np.array([
+            [np.math.cos(lng_rad), 0, -np.math.sin(lng_rad)],
+            [0, 1, 0],
+            [np.math.sin(lng_rad), 0, np.math.cos(lng_rad)]
+        ])
+        R = np.dot(Ry, Rx)
 
         # intrinsic matrix for the projection
         # fov_dimension = max(*self.preview_size)

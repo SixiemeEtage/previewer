@@ -13,8 +13,10 @@ from .previewer import PreviewGeneratorNative, PreviewGeneratorOpenCV
 @click.option('--preview-height', type=int, default=750)
 @click.option('--preview-width', type=int, default=1000)
 @click.option('--fov', type=float, default=55.0)
+@click.option('--latitude', type=float, default=0.0)
+@click.option('--longitude', type=float, default=0.0)
 @click.option('--no-opencv', type=bool, default=False)
-def main(file_path, output, preview_height, preview_width, fov, no_opencv):
+def main(file_path, output, preview_height, preview_width, fov, latitude, longitude, no_opencv):
     click.echo(click.style("Image will be loaded from path '{}'".format(file_path), fg='blue'))
 
     preview_size = (preview_width, preview_height)
@@ -23,10 +25,10 @@ def main(file_path, output, preview_height, preview_width, fov, no_opencv):
     click.echo("Loading image...", nl=False)
     t0 = time.time()
     if not no_opencv:
-        p = PreviewGeneratorOpenCV(file_path, preview_size=preview_size, fov=fov)
+        p = PreviewGeneratorOpenCV(file_path, preview_size=preview_size, fov=fov, latitude=latitude, longitude=longitude)
     else:
         click.echo(click.style("Warning: very unefficient implementation, it might take more than a minute", fg='orange'))
-        p = PreviewGeneratorNative(file_path, preview_size=preview_size)
+        p = PreviewGeneratorNative(file_path, preview_size=preview_size, fov=fov, latitude=latitude, longitude=longitude)
     click.echo(" executed in {:.3f}s".format(time.time() - t0))
     
     click.echo("Generating preview...", nl=False)
