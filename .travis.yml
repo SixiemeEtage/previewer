@@ -2,6 +2,7 @@
 # This file will be regenerated if you run travis_pypi_setup.py
 
 language: python
+os: osx
 compiler:
   - clang++
 
@@ -9,25 +10,14 @@ cache:
   directories:
     - $HOME/.cache/pip
 
-matrix:
-  include:
-    - language: generic
-      os: osx
-      env: TOXENV=py27
-    - language: generic
-      os: osx
-      env: TOXENV=py36
-    - language: generic
-      os: osx
-      env: TOXENV=docs
-
 install:
   - brew update
+  - brew install python
   - brew tap homebrew/science
-  - brew install opencv3 --with-python --with-python3
+  - brew install opencv3 --with-python
   - brew link --force opencv3
   - echo /usr/local/opt/opencv3/lib/python2.7/site-packages >> /usr/local/lib/python2.7/site-packages/opencv3.pth
-  - echo /usr/local/opt/opencv3/lib/python3.6/site-packages >> /usr/local/lib/python3.6/site-packages/opencv3.pth
+  # - echo /usr/local/opt/opencv3/lib/python3.6/site-packages >> /usr/local/lib/python3.6/site-packages/opencv3.pth
   - brew install boost-python
   - mkdir -p native/build && cd native/build
   - cmake ..
@@ -41,10 +31,10 @@ install:
     -DBoost_INCLUDE_DIR=/usr/local/Cellar/boost/1.63.0/include/
   - make
   - make install
-  - ./.travis/install.sh
+  - pip install tox codecov
 
 script:
-  - ./.travis/run.sh
+  - tox -- $TOX_FLAGS
 
 #after_success:
 #  - ./.travis/update_coverage.sh
