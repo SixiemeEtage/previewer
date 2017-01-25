@@ -39,6 +39,13 @@ class GeneratorMixin:
         Kinv = np.linalg.inv(K)
         self.R_Kinv = np.dot(R, Kinv)
 
+    def _input_optimal_size(self):
+        """NB: The fov determines the vertical fov of the output"""
+        height = float(180) / self._fov * self.preview_size[1]
+        height = min(height, self.image_size[1])  # bound the image height
+        width = float(self.image_size[0]) / self.image_size[1] * height
+        return tuple(map(int, (width, height)))
+
     def _map_backward(self, x, y):
         """Map backward the final preview image pixel (x,y) to the 
         original equirectangular coords (u,v)"""
@@ -103,24 +110,32 @@ class PreviewGeneratorNative(object, GeneratorMixin):
 
 class PreviewGeneratorOpenCV(object, GeneratorMixin):
 
-    def __init__(self, image_path, fov=50, preview_size=(1000,750)):
+    def __init__(self, image_path, **kwargs):
         self.image = cv2.imread(image_path)
         image_size = (self.image.shape[1], self.image.shape[0])
-        self._setup(image_size, fov=fov, preview_size=preview_size)
+        self._setup(image_size, **kwargs)
 
     def generate(self):
         """Generate the preview"""
+        # first we resize the input image
+        # so that the remaping step produce a nice image
+        optimal_size = self._input_optimal_size()
+        if optimal_size != self.image_size:
+            resized_image = cv2.resize(self.image, optimal_size)
+        else:
+            resized_image = self.image
+
+        # build the remaping maps
         P = projector.Projector(
-            self.image_size[0],
-            self.image_size[1],
+            optimal_size[0],
+            optimal_size[1],
             self.preview_size[0],
             self.preview_size[1],
             self.R_Kinv
         )
-
         P.unproject()
         map_x = P.get_map_x()
         map_y = P.get_map_y()
 
-        out = cv2.remap(self.image, map_x, map_y, cv2.INTER_LANCZOS4)
+        out = cv2.remap(resized_image, map_x, map_y, cv2.INTER_LANCZOS4)
         return out
