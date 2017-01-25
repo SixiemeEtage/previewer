@@ -12,7 +12,6 @@ cache:
 
 install:
   - brew update
-  - brew install python
   - brew tap homebrew/science
   - brew install opencv3 --with-python
   - brew link --force opencv3
