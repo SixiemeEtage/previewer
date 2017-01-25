@@ -1,5 +1,7 @@
 # previewer
 
+[![build-status-image]][travis]
+
 > Imagination is everything. It is the preview of life's coming attractions.  
 > *Albert Einstein*
 
@@ -61,6 +63,9 @@ Tools used in rendering this package:
 
 `previewer` is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
 
+
+[build-status-image]: https://img.shields.io/travis/Photonomie/previewer.svg
+[travis]: https://travis-ci.org/Photonomie/previewer
 
 [Cookiecutter]: https://github.com/audreyr/cookiecutter
 [cookiecutter-pypackage]: https://github.com/audreyr/cookiecutter-pypackage
