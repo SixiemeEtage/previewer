@@ -4,7 +4,7 @@ import click
 import cv2
 from PIL import Image
 
-from .previewer import PreviewGeneratorNative, PreviewGeneratorOpenCV
+from .processors import PreviewNativeProcessor, PreviewOpenCVProcessor
 
 
 @click.command()
@@ -27,10 +27,10 @@ def main(file_path, output, preview_height, preview_width, fov, latitude, longit
     click.echo("Loading image...", nl=False)
     t0 = time.time()
     if not no_opencv:
-        p = PreviewGeneratorOpenCV(file_path, preview_size=preview_size, fov=fov, latitude=latitude, longitude=longitude)
+        p = PreviewOpenCVProcessor(file_path, preview_size=preview_size, fov=fov, latitude=latitude, longitude=longitude)
     else:
         click.echo(click.style("Warning: very unefficient implementation, it might take more than a minute", fg='orange'))
-        p = PreviewGeneratorNative(file_path, preview_size=preview_size, fov=fov, latitude=latitude, longitude=longitude)
+        p = PreviewNativeProcessor(file_path, preview_size=preview_size, fov=fov, latitude=latitude, longitude=longitude)
     click.echo(" executed in {:.3f}s".format(time.time() - t0))
     
     click.echo("Generating preview...", nl=False)

@@ -76,7 +76,7 @@ class GeneratorMixin:
         raise NotImplementedError
 
 
-class PreviewGeneratorNative(object, GeneratorMixin):
+class PreviewNativeProcessor(object, GeneratorMixin):
 
     def __init__(self, image_path, **kwargs):
         self.image = Image.open(image_path)
@@ -121,7 +121,7 @@ class PreviewGeneratorNative(object, GeneratorMixin):
         return out
 
 
-class PreviewGeneratorOpenCV(object, GeneratorMixin):
+class PreviewOpenCVProcessor(object, GeneratorMixin):
 
     def __init__(self, image_path, **kwargs):
         self.image = cv2.imread(image_path)
