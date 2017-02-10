@@ -19,7 +19,7 @@ $ brew link --force opencv3
 ### Install the C++ native lib
 
 ```sh
-$ git clone https://github.com/Photonomie/previewer
+$ git clone https://github.com/SixiemeEtage/previewer
 $ cd previewer
 $ mkdir -p native/build && cd native/build
 $ cmake .. \
@@ -63,8 +63,8 @@ Tools used in rendering this package:
 `previewer` is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
 
 
-[build-status-image]: https://img.shields.io/travis/Photonomie/previewer.svg
-[travis]: https://travis-ci.org/Photonomie/previewer
+[build-status-image]: https://img.shields.io/travis/SixiemeEtage/previewer.svg
+[travis]: https://travis-ci.org/SixiemeEtage/previewer
 
 [Cookiecutter]: https://github.com/audreyr/cookiecutter
 [cookiecutter-pypackage]: https://github.com/audreyr/cookiecutter-pypackage

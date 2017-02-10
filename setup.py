@@ -20,7 +20,7 @@ setup(
     description="Generate a preview of the 360 image.",
     author="Pierre Dulac",
     author_email='pierre@dulaccc.me',
-    url='https://github.com/Photonomie/previewer',
+    url='https://github.com/SixiemeEtage/previewer',
     packages=[
         'previewer',
     ],
