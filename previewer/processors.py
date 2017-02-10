@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-import projector
+import libpreviewer
 
 
 def clip(v, minv, maxv):
@@ -139,7 +139,7 @@ class PreviewOpenCVProcessor(object, GeneratorMixin):
             resized_image = self.image
 
         # build the remaping maps
-        P = projector.Projector(
+        P = libpreviewer.Projector(
             optimal_size[0],
             optimal_size[1],
             self.preview_size[0],

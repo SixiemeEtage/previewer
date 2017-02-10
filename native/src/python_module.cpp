@@ -4,7 +4,7 @@
 #include <boost/python.hpp>
 #include <pyboostcvconverter/pyboostcvconverter.hpp>
 
-namespace projector {
+namespace libpreviewer {
 
     using namespace boost::python;
 
@@ -110,7 +110,7 @@ namespace projector {
         return NUMPY_IMPORT_ARRAY_RETVAL;
     }
 
-    BOOST_PYTHON_MODULE (projector) {
+    BOOST_PYTHON_MODULE (libpreviewer) {
         //using namespace XM;
         init_ar();
 
@@ -125,4 +125,4 @@ namespace projector {
             .def("get_map_y", &Projector::get_map_y);
     }
 
-} //end namespace projector
+} //end namespace libpreviewer

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
-project("projector")
+project("libpreviewer")
 
 #----------------------------CMAKE & GLOBAL PROPERTIES-------------------------#
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
@@ -41,13 +41,13 @@ if (${PYTHON_DESIRED_VERSION} STREQUAL "2.X")
     SET(PYTHON_LIBRARIES ${PYTHON2_LIBRARY})
     SET(PYTHON_EXECUTABLE ${PYTHON2_EXECUTABLE})
     SET(PYTHON_PACKAGES_PATH ${PYTHON2_PACKAGES_PATH})
-    SET(ARCHIVE_OUTPUT_NAME projector_py2)
+    SET(ARCHIVE_OUTPUT_NAME libpreviewer_py2)
 else ()
     SET(PYTHON_INCLUDE_DIRS ${PYTHON3_INCLUDE_DIR} ${PYTHON3_INCLUDE_DIR2} ${PYTHON3_NUMPY_INCLUDE_DIRS})
     SET(PYTHON_LIBRARIES ${PYTHON3_LIBRARY})
     SET(PYTHON_EXECUTABLE ${PYTHON3_EXECUTABLE})
     SET(PYTHON_PACKAGES_PATH ${PYTHON3_PACKAGES_PATH})
-    SET(ARCHIVE_OUTPUT_NAME projector_py3)
+    SET(ARCHIVE_OUTPUT_NAME libpreviewer_py3)
 endif ()
 
 file(GLOB project_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
@@ -76,7 +76,7 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "import distutils.sysconfig; pri
 set_target_properties(${PROJECT_NAME} PROPERTIES
         ARCHIVE_OUTPUT_NAME ${ARCHIVE_OUTPUT_NAME}  # prevent name conflict for python2/3 outputs
         PREFIX ""
-        OUTPUT_NAME projector
+        OUTPUT_NAME libpreviewer
         SUFFIX ${${PROJECT_NAME}_PY_SUFFIX})
 
 if (MSVC AND NOT PYTHON_DEBUG_LIBRARIES)
