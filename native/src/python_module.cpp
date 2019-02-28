@@ -1,4 +1,4 @@
-#define PY_ARRAY_UNIQUE_SYMBOL pbcvt_ARRAY_API
+#define PY_ARRAY_UNIQUE_SYMBOL libpreviewer_ARRAY_API
 
 #include <iostream>
 #include <boost/python.hpp>
@@ -115,8 +115,8 @@ namespace libpreviewer {
         init_ar();
 
         //initialize converters
-        to_python_converter<cv::Mat, pbcvt::matToNDArrayBoostConverter>();
-        pbcvt::matFromNDArrayBoostConverter();
+        to_python_converter<cv::Mat,libpreviewer::matToNDArrayBoostConverter>();
+        //matFromNDArrayBoostConverter();
 
         //expose module-level functions
         class_<Projector>("Projector", init<int, int, int, int, cv::Mat>())

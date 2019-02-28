@@ -6,27 +6,14 @@
  *   Copyright: 2015 Gregory Kramida
  */
 #define NO_IMPORT_ARRAY
-#define PY_ARRAY_UNIQUE_SYMBOL pbcvt_ARRAY_API
+#define PY_ARRAY_UNIQUE_SYMBOL libpreviewer_ARRAY_API
 #include <pyboostcvconverter/pyboostcvconverter.hpp>
 #if CV_VERSION_MAJOR == 3
-namespace pbcvt {
+namespace libpreviewer {
 using namespace cv;
 //===================   ERROR HANDLING     =========================================================
 
 static int failmsg(const char *fmt, ...) {
-	char str[1000];
-
-	va_list ap;
-	va_start(ap, fmt);
-	vsnprintf(str, sizeof(str), fmt, ap);
-	va_end(ap);
-
-	PyErr_SetString(PyExc_TypeError, str);
-	return 0;
-}
-
-static PyObject* failmsgp(const char *fmt, ...)
-		{
 	char str[1000];
 
 	va_list ap;
@@ -423,5 +410,5 @@ void matFromNDArrayBoostConverter::construct(PyObject* object,
 	data->convertible = storage;
 }
 
-}			//end namespace pbcvt
+}			//end namespace libpreviewer
 #endif
