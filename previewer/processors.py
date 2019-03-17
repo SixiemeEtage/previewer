@@ -9,7 +9,7 @@ def clip(v, minv, maxv):
     return max(min(v, maxv), minv)
 
 
-class GeneratorMixin:
+class BaseGenerator(object):
 
     def _setup(self, image_size, fov=50.0, latitude=0.0, longitude=0.0, preview_size=(1000,750)):
         self.image_size = image_size
@@ -76,7 +76,7 @@ class GeneratorMixin:
         raise NotImplementedError
 
 
-class PreviewNativeProcessor(object, GeneratorMixin):
+class PreviewNativeProcessor(BaseGenerator):
 
     def __init__(self, image_path, **kwargs):
         self.image = Image.open(image_path)
@@ -121,7 +121,7 @@ class PreviewNativeProcessor(object, GeneratorMixin):
         return out
 
 
-class PreviewOpenCVProcessor(object, GeneratorMixin):
+class PreviewOpenCVProcessor(BaseGenerator):
 
     def __init__(self, image_path, **kwargs):
         self.image = cv2.imread(image_path)

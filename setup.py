@@ -6,8 +6,8 @@ from setuptools import setup
 
 requirements = [
     'click==6.7',
-    'numpy==1.12.0',
-    'Pillow==4.0.0',
+    'numpy==1.16.2',
+    'Pillow==5.4.1',
 ]
 
 test_requirements = [
