@@ -16,7 +16,7 @@ test_requirements = [
 
 setup(
     name='previewer',
-    version='0.1.0',
+    version='0.3.0',
     description="Generate a preview of the 360 image.",
     author="Pierre Dulac",
     author_email='pierre@dulaccc.me',
