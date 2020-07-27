@@ -11,15 +11,16 @@ def clip(v, minv, maxv):
 
 class BaseGenerator(object):
 
-    def _setup(self, image_size, fov=50.0, latitude=0.0, longitude=0.0, preview_size=(1000,750)):
-        self.image_size = image_size
+    def _setup(self, image_size, fov=50.0, latitude=0.0, longitude=0.0, preview_size=(1000, 750)):
+        self.image_size = tuple(map(int, image_size))
         self.image_w2 = image_size[0] / 2
         self.image_h2 = image_size[1] / 2
 
         self._scale = self.image_w2 / np.math.pi
         self._fov = fov
 
-        self.preview_size = preview_size
+        # NB: Force int casting since having floats here would fail with the C++ bindings.
+        self.preview_size = tuple(map(int, preview_size))
         self.preview_w2 = preview_size[0] / 2
         self.preview_h2 = preview_size[1] / 2
 
